@@ -192,7 +192,7 @@ class ZoomableImageViewer(QGraphicsView):
 class TacticalGCSWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("SIYI ZR10 // Tactical Human Detection & Multi-Session GCS")
+        self.setWindowTitle("Ground Control Station")
         self.resize(1400, 860)
         self.captures = {}
         self.current_coords = None
