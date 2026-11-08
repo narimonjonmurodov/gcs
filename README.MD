@@ -79,6 +79,6 @@ pip install PyQt5
 ## Running the Station
 #### Launch the Ground Control Station dashboard:
 ```bash
-python3 gcs_tactical_station.py
+python3 ground-control-station.py
 ```
 - The application will bind to `port 5055`, create a new timestamped mission session directory inside `gcs_data/`, and await incoming datalink connections from the airborne transmitter.
