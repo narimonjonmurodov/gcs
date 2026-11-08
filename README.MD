@@ -1,41 +1,30 @@
-<p align="center">
-  <img src="./assets/1.png" alt="Project Banner" width="100%">
-</p>
+<p align="center"> <img src="./assets/1.png" alt="Ground Control Station Banner" width="100%"> </p>
 
+# Ground Control Station (GCS)
 
-# SIYI ZR10 Tactical GCS & Edge AI Telemetry Station
+A Python-based Ground Control Station designed to solve the challenge of receiving, managing, and visualizing aerial images and associated aircraft telemetry transmitted over a wireless data link.
 
-A high-reliability Ground Control Station (GCS) telemetry dashboard and real-time datalink ingestion pipeline engineered for unmanned aerial surveillance. Built using PyQt5 and Python socket architecture, the system provides real-time receiving, cryptographic verification, interactive inspection, and geo-referencing for aerial human detections captured via the SIYI ZR10 gimbal camera and NVIDIA DeepStream edge AI pipelines.
-
----
-
-## Architecture Overview
-
-The system operates across a low-latency air-to-ground pipeline designed for edge compute nodes (e.g., NVIDIA Jetson platforms) and mission control ground stations operating over the SIYI wireless datalink subnet (`192.168.144.0/24`).
-
-1. **Airborne Edge Ingestion:**
-   - DeepStream extracts native 1080p video frames from the SIYI ZR10 camera via RTSP (`rtsp://192.168.144.25:8554/main.264`).
-   - High-confidence human detections trigger downscaled 640x640 JPEG exports and synchronized aircraft telemetry logs (`.txt`) extracted via MAVLink (`GLOBAL_POSITION_INT`).
-   - Pairs are transmitted across TCP port 5055 with strict SHA-256 validation before permanent airborne inode deletion.
-
-2. **Ground Control Station Dashboard (`gcs_tactical_station.py`):**
-   - Implements a non-blocking TCP socket server bound to `0.0.0.0:5055` to ingest streaming image and telemetry payloads over Ethernet/Wi-Fi link bridges.
-   - Manages organized multi-session mission directories partitioned by run timestamps.
-   - Provides an interactive visual inspection canvas with dynamic zoom/pan transforms, target confidence scoring, aircraft spatial vectors, and one-click Google Maps coordinate projection.
+The application provides a centralized interface where operators can automatically receive transmitted images, access their associated GPS coordinates and aircraft telemetry, inspect images in detail, and organize received data into individual mission sessions. It eliminates the need for manually collecting and matching image files with their corresponding positional information.
 
 ---
 
 ## Core Features
+- **Real-Time Image Reception:** Automatically receives JPEG images transmitted through a TCP data link.
+- **Telemetry Reception:** Receives and displays associated aircraft information, including latitude, longitude, altitude, heading, GPS status, and timestamps.
+- **Image Visualization:** Provides an interactive image viewer with zoom, pan, and automatic image fitting.
+- **Geographical Positioning:** Associates received images with their geographical coordinates and provides direct Google Maps integration.
+- **Data Integrity Verification:** Uses SHA-256 checksums to verify received image and telemetry payloads.
+- **Mission Management:** Automatically creates timestamped mission sessions and organizes received images and metadata.
+- **Automatic Synchronization:** Detects newly received files and updates the graphical interface without requiring application restarts.
+- **Historical Data Access:** Allows operators to browse previously recorded mission sessions and inspect their associated images and telemetry.
 
-- **Multi-Session Mission Tracking:** Automatically generates timestamped runtime directories (`gcs_mnm_data/session_YYYY-MM-DD_HH-MM-SS/`) on launch. Operators can dynamically review active or historical mission runs using the integrated session selector dropdown.
-- **Fail-Safe TCP Transmission & Verification:** Ingests incoming `.jpg` and `.txt` payloads atomically using `.tmp` buffers. Computes and validates SHA-256 cryptographic hashes for both payloads before writing to disk and dispatching socket ACKs back to the airborne node.
-- **Dynamic File System Synchronization:** Employs a debounced `QFileSystemWatcher` (150 ms) to monitor active session directories. The dashboard hot-reloads images and GPS data upon manual file modifications, renames, or deletions without freezing the main GUI thread.
-- **High-Precision Image Canvas:** A GPU-accelerated `QGraphicsView` supporting smooth bilinear filtering (`SmoothPixmapTransform`), mouse-wheel-centric zoom (0.5x to 20.0x magnification), drag-to-pan inspection, and double-click aspect ratio resetting.
-- **Geospatial & Telemetry Parsing:** Parses aircraft telemetry attributes from incoming `.txt` metadata:
-  - Latitude, Longitude, Altitude (MSL & Relative), Heading, and GPS Lock Status.
-  - Formats human detection confidence ratings.
-  - Provides interactive, clickable coordinate buttons that directly launch external geospatial mapping views via Google Maps URL integration.
-- **Resilient UI State Management:** Handles partial or missing data payloads gracefully. If telemetry files are missing or malformed, the visual feed continues running and disables mapping triggers rather than throwing runtime exceptions.
+---
+
+## Communication & Data Management
+
+The GCS operates as a TCP server listening on port 5055, receiving image and telemetry payloads from the airborne transmitter.
+
+Each received image is stored alongside its corresponding telemetry file using a shared identifier.
 
 ---
 
