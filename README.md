@@ -62,3 +62,15 @@ altitude_rel_m: 55.20
 heading_deg: 142.5
 confidence: 0.8950
 gps_status: 3D_LOCK
+---
+
+## How to Use
+
+### 1. Installation
+- **Windows:** Download `GroundControlStation_Setup.exe` from [**Releases**](../../releases), run the installer, and launch **GroundControlStation** from your Desktop or Start Menu (firewall rules are configured automatically).
+- **Ubuntu Linux (`x86_64`):** Download `GroundControlStation_1.0.0_amd64.deb` from [**Releases**](../../releases) and install it via terminal with `sudo apt install ./GroundControlStation_1.0.0_amd64.deb` *(if `ufw` firewall is enabled, run `sudo ufw allow 5055/tcp` once)*.
+
+### 2. Operation & Workflow
+1. **Launch the Station:** Open **GroundControlStation** on the ground computer connected to the same network as your airborne unit. The station automatically listens on **TCP port `5055`** and creates a new timestamped session folder inside `Documents/GCS_MNM_Data/`.
+2. **Receive Live Detections:** As the aircraft transmits target detections, each image (`<id>.jpg`) and its matching telemetry record (`<id>.txt`) appear automatically in the dashboard with live GPS coordinates plotted on the map.
+3. **Inspect & Review:** Use the image viewer to zoom and pan into detected targets, check altitude/heading/GPS status telemetry, or select any previous mission folder to review historical flights without restarting the application.
