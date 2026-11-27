@@ -11,7 +11,7 @@
 *Engineered by Murodov Narimonjon Muxtorovich*
 
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Ubuntu%20Linux-0f141c?style=for-the-badge)
-![Domain](https://img.shields.io/badge/Domain-Avionics%20%26%20UAV%20Propulsion-1f6feb?style=for-the-badge)
+![Domain](https://img.shields.io/badge/Domain-UAV%20Command%20%26%20Tactical%20GCS-1f6feb?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Release-Production%20Desktop%20Application-238636?style=for-the-badge)
 
 </div>
