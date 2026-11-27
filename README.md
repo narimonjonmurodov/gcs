@@ -1,20 +1,20 @@
-<p align="center">
-  <img src="./assets/2.png" alt="Ground Control Station Logo" width="140">
+<div align="center">
+
+# Ground Control Station (GCS)
+
+**Real-time aerial imagery, GPS telemetry management, and mission visualization software for unmanned aerial operations.**
+
+<p>
+  <img src="./assets/logo.png" alt="Ground Control Station Logo" width="140">
 </p>
 
-<h1 align="center">Ground Control Station (GCS)</h1>
+*Engineered by Murodov Narimonjon Muxtorovich*
 
-<p align="center">
-  <strong>Provided by MNM</strong>
-</p>
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Ubuntu%20Linux-0f141c?style=for-the-badge)
+![Domain](https://img.shields.io/badge/Domain-Avionics%20%26%20UAV%20Propulsion-1f6feb?style=for-the-badge)
+![Status](https://img.shields.io/badge/Release-Production%20Desktop%20Application-238636?style=for-the-badge)
 
-<p align="center">
-  Real-time aerial imagery, GPS telemetry management, and mission visualization software for unmanned aerial operations.
-</p>
-
-<p align="center">
-  <img src="./assets/1.png" alt="Ground Control Station Banner" width="100%">
-</p>
+</div>
 
 ---
 
